@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -26,62 +24,27 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-
-/* BEM CSS for the AuthorCard component */
-/*
-.author-card {
-  background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem; /* Tailwind's rounded-lg 
-  padding: 1.5rem; /* Tailwind's p-6 
-  max-width: 24rem; /* Tailwind's max-w-sm 
-  color: #4a5568; /* Tailwind's text-gray-800 
-}
-
-.author-card__name {
-  font-weight: bold; /* Tailwind's font-bold 
-  font-size: 1.125rem; /* Tailwind's text-lg 
-}
-
-.author-card__year-of-birth {
-  font-size: 0.875rem; /* Tailwind's text-sm 
-  color: #718096; /* Tailwind's text-gray-600 
-  font-style: italic; /* Tailwind's italic 
-}
-*/
-
 .item-card {
-  max-width: 24rem; /* Tailwind's max-w-sm */
-  border-radius: 0.5rem; /* Tailwind's rounded */
+  max-width: 24rem;
+  border-radius: 0.5rem;
   overflow: hidden;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Tailwind's shadow-lg */
-  background-color: white; /* Tailwind's bg-white */
-  padding: 1rem; /* Tailwind's p-4 */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  padding: 1rem;
 }
 
 .item-card__title {
-  font-weight: bold; /* Tailwind's font-bold */
-  font-size: 1.25rem; /* Tailwind's text-xl */
-  margin-bottom: 0.5rem; /* Tailwind's mb-2 */
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .item-card__detail {
-  color: #4a5568; /* Tailwind's text-gray-700 */
-  font-size: 1rem; /* Tailwind's text-base */
-  margin-bottom: 0.5rem; /* Add some spacing between details */
+  color: #4a5568;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-.item-card__label {
-  font-weight: 600; /* Tailwind's font-semibold */
-}
-
-/* Block: form */
 .form {
   width: 100%;
   max-width: 400px;
@@ -91,19 +54,16 @@ body {
   border-radius: 5px;
 }
 
-/* Element: form__group */
 .form__group {
   margin-bottom: 15px;
 }
 
-/* Element: form__label */
 .form__label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
-/* Element: form__input */
 .form__input {
   width: 100%;
   padding: 10px;
@@ -112,7 +72,6 @@ body {
   font-size: 16px;
 }
 
-/* Element: form__button */
 .form__button {
   width: 100%;
   padding: 10px;
@@ -122,20 +81,18 @@ body {
   border-radius: 4px;
 }
 
-/* Modifier: form__button--primary */
 .form__button--primary {
   background-color: #007bff;
   color: white;
 }
 
-/* Modifier: form__button--secondary */
 .form__button--secondary {
   background-color: #6c757d;
   color: white;
 }
 
-/* Element: form__text */
 .form__text {
   text-align: center;
   margin: 10px 0;
 }
+

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -6,102 +5,91 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/auth";
 
 function AuthForm() {
-
-    const router = useRouter()
-    const auth = useAuth()
+  const router = useRouter();
+  const auth = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
   const [isLogin, setIsLogin] = useState(true);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setError("")
+    setError("");
 
-    const url = isLogin ? "/api/auth/login" : "/api/auth/register"
-    const response = await fetch(url,{
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            email,
-            password,
-            name
-        })
-    })
+    const url = isLogin ? "/api/auth/login" : "/api/auth/register";
+    console.log({ email, password, name });
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+        name,
+      }),
+    });
 
-    if(response.ok) {
-        const data = await response.json();
+    if (response.ok) {
+      const data = await response.json();
 
-  
-        localStorage.setItem("@library/token", data.token)
-        auth.setToken(data.token)
-        router.push("/items")
-        return
+      localStorage.setItem("@library/token", data.token);
+      auth.setToken(data.token);
+      router.push("/items");
+      return;
     }
-    setError("Invalid login credentials")
+    setError("Invalid login credentials");
   }
 
   return (
-    <div>
-      AuthForm
-      <form className="form bg-white" onSubmit={handleSubmit}>
-        <div className="form__group">
-          <label className="form__label">Email</label>
+    <div className="container mt-5">
+      <h2 className="text-center mb-4">Login</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <label className="form-label">Email</label>
           <input
-            className="form__input"
             type="email"
+            className="form-control"
             value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          ></input>
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
-        <div className="form__group">
-          <label className="form__label">Password</label>
+        <div className="mb-3">
+          <label className="form-label">Password</label>
           <input
-            className="form__input"
             type="password"
+            className="form-control"
             value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          ></input>
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
         </div>
         {!isLogin && (
-          <div className="form__group">
-            <label className="form__label">Name</label>
+          <div className="mb-3">
+            <label className="form-label">Name</label>
             <input
-              className="form__input"
               type="text"
+              className="form-control"
               value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            ></input>
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
         )}
-        {error && <p className="text-red-500">
-            {error}
-        </p>}
-        <button className="form__button form__button--primary">
+        {error && <p className="text-danger">{error}</p>}
+        <button type="submit" className="btn btn-primary w-100">
           {isLogin ? "Login" : "Register"}
         </button>
-        <p className="form__text">...or</p>
-        <div className="form__group">
-          <button
-            className="form__button form__button--secondary"
-            type="button"
-            onClick={(e) => {
-              setIsLogin(!isLogin);
-            }}
-          >
-            {!isLogin ? "Login" : "Register"}
-          </button>
-        </div>
+        <p className="text-center mt-3">...or</p>
+        <button
+          type="button"
+          className="btn btn-secondary w-100"
+          onClick={() => setIsLogin(!isLogin)}
+        >
+          {isLogin ? "Register" : "Login"}
+        </button>
       </form>
     </div>
   );

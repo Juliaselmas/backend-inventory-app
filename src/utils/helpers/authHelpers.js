@@ -2,7 +2,7 @@
 import * as jose from "jose";
 
 
-const JWT_SECRET = "SECRET"; // should be a env variable
+const JWT_SECRET = "secret"; // should be a env variable
 
 const JWT_AUTH_EXP = "1y"
 
@@ -22,11 +22,12 @@ export async function signJWT(payload) {
 }
 
 export async function verifyJWT(token) {
-
-    const verified = await jose.jwtVerify(
-        token,
-        encodedSecret()
-    )
-    
-    return verified.payload
-}
+    try {
+      const verified = await jose.jwtVerify(token, encodedSecret());
+      return verified.payload; // Returnera payload om verifiering är framgångsrik
+    } catch (error) {
+      console.error("JWT verification failed", error);
+      throw new Error("Invalid token");
+    }
+  }
+  
