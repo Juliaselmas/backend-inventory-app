@@ -41,9 +41,9 @@ export const config = {
   matcher: [
    // "/api/users/",
    // "/api/users/:path*",
-   "/api/auth/",
+   //"/api/auth/",
     //"/api/auth/:path*",
-    "/api/items/",
-    "/api/items/:path*",
+    //"/api/items/",
+    //"/api/items/:path*",
   ],
 };

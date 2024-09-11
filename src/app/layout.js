@@ -10,18 +10,30 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html>
+      <body>
         <AuthProvider>
-          <Header />
-          <ClientBootstrap /> {/* Här inkluderas Bootstrap på klientsidan */}
           {children}
         </AuthProvider>
       </body>
     </html>
   );
 }
-
+/*
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <AuthProvider>
+          <Header />
+          <ClientBootstrap /> {// Här inkluderas Bootstrap på klientsidan }
+          {children}
+        </AuthProvider>
+      </body>
+    </html>
+  );
+}
+*/
 
 
 /*
