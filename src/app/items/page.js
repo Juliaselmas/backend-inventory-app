@@ -1,4 +1,4 @@
-// src/app/items/page.js
+
 "use client";
 
 import { useContext, useEffect, useState } from "react";

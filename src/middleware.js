@@ -5,8 +5,9 @@ import jwt from "jsonwebtoken";
 const unsafeMethods = ["POST", "PUT", "DELETE"];
 
 export async function middleware(req) {
-  console.log("Middleware is running", req.url.pathname);
-  const url = new URL(req.url);
+  const url = new URL(req.url, req.nextUrl.origin);  // Skapa ett URL-objekt från req.url och lägg till req.nextUrl.origin
+  console.log("Middleware is running", url.pathname);
+
   if (
     unsafeMethods.includes(req.method) ||
     url.pathname.includes("api/users")
@@ -38,14 +39,11 @@ export async function middleware(req) {
 
 export const config = {
   matcher: [
-    "/api/users/",
-    "/api/users/:path*",
-    "/api/auth/",
-    "/api/auth/:path*",
+   // "/api/users/",
+   // "/api/users/:path*",
+   "/api/auth/",
+    //"/api/auth/:path*",
     "/api/items/",
     "/api/items/:path*",
-    // "/api/items/import",
-    // "/api/items/:path*",
-    // "/api/users/me"
   ],
 };

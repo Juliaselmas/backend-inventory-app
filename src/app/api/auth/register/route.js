@@ -11,6 +11,7 @@ export async function POST(req) {
     // Försök att parsa inkommande JSON och validera input
     try {
         body = await req.json();
+        console.log(body);
         if (!body.email || !body.password || !body.name) {
             throw new Error("Email, password, and name are required");
         }

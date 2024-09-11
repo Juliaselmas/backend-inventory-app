@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { lowerCaseCompare } from "@/utils/helpers/apiHelpers";
-
 //import { validateitemsData } from "@/utils/helpers/apiHelpers";
 
 /* format på User:
@@ -23,15 +22,12 @@ export async function GET(req) {
     try {
         const users = await prisma.user.findMany();
         return NextResponse.json(users, { status: 200 });
-    } catch (error) {
+      } catch (error) {
+        console.log("Error fetching users:", error);  // Logga ut fel
         return NextResponse.json({
-            message: "Error fetching users"
-        }, {
-            status: 500
-        });
-    }
-
-    //return NextResponse.json({})
+          message: "Error fetching users"
+        }, { status: 500 });
+      }
 }
 
 export async function POST(req) {

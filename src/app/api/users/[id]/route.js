@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import { lowerCaseCompare } from "@/utils/helpers/apiHelpers";
-
+//import { lowerCaseCompare } from "@/utils/helpers/apiHelpers";
 //import { validateitemsData } from "@/utils/helpers/apiHelpers";
 
 /* format på User:
