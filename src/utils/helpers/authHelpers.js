@@ -1,8 +1,6 @@
-
 import * as jose from "jose";
 
-
-const JWT_SECRET = "secret"; // should be a env variable
+const JWT_SECRET = process.env.JWT_SECRET || "my-secret-key"; // should be a env variable
 
 const JWT_AUTH_EXP = "1y"
 

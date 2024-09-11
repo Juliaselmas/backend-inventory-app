@@ -20,6 +20,7 @@ function AuthForm() {
     setError("")
 
     const url = isLogin ? "/api/auth/login" : "/api/auth/register"
+    console.log("Email:", email, "Password:", password);
     const response = await fetch(url,{
         method: "POST",
         headers: {
@@ -34,6 +35,8 @@ function AuthForm() {
 
     if(response.ok) {
         const data = await response.json();
+        console.log(data);
+        console.log("Token received:", data.token); 
 
 
         localStorage.setItem("@library/token", data.token)
@@ -41,7 +44,13 @@ function AuthForm() {
         router.push("/items")
         return
     }
-    setError("Invalid login credentials")
+    //setError("Invalid login credentials")
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.log("Error response:", errorData);
+      setError(errorData.message || "Invalid login credentials");
+      return;
+    }
   }
 
   return (

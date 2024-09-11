@@ -56,34 +56,4 @@ export async function POST(req) {
     }
     
 }
-
-
-export async function PUT(req) {
-
-
-    return NextResponse.json({})
-}
-
-
-export async function DELETE(req) {
-
-
-    return NextResponse.json({})
-
-    /*
-    export async function DELETE(req, options) {
-    const id = options.params.id
     
-    try {
-        await prisma.book.delete({
-            where: { id: Number(id) }
-        })
-        return new Response(null, {
-            status: 204
-        })
-    }catch (error) {
-        return object404Respsonse(NextResponse, "Book")
-    }
-}
-    */
-}
