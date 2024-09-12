@@ -250,3 +250,21 @@ body {
   background-color: #dc3545;
   color: white;
 }
+
+.logout-button {
+  position: fixed; /* Fixera knappen */
+  top: 1rem; /* Avstånd från toppen */
+  right: 1rem; /* Avstånd från höger */
+  padding: 0.5rem 1rem; /* Inre avstånd */
+  background-color: #dc3545; /* Färg för logga ut-knappen */
+  color: white; /* Vit textfärg */
+  border: none; /* Ingen kantlinje */
+  border-radius: 4px; /* Rundade hörn */
+  cursor: pointer; /* Pekaren ska visa att det är klickbart */
+  font-size: 1rem; /* Textstorlek */
+  transition: background-color 0.3s; /* Övergång för hover */
+}
+
+.logout-button:hover {
+  background-color: #c82333; /* Mörkare färg vid hover */
+}

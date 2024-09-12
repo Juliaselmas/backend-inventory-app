@@ -2,9 +2,10 @@
 import { useAuth } from "@/context/auth";
 import { useState, useEffect } from "react";
 import ItemCard from "@/components/ItemCard"; // Importera ItemCard-komponenten
+import { useRouter } from "next/navigation"; // För att omdirigera efter utloggning
 
 export default function ItemsPage() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const token = user?.token;
   const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState({
@@ -14,6 +15,7 @@ export default function ItemsPage() {
     category: "",
   });
   const [isEditing, setIsEditing] = useState(null); // Håller koll på vilket item som redigeras
+  const router = useRouter(); // Omdirigering
 
   // Hämta items från API
   useEffect(() => {
@@ -34,6 +36,11 @@ export default function ItemsPage() {
       setItems(data);
     }
   }
+
+  const handleLogout = () => {
+    logout(); // Rensa token och användarinformation
+    router.push("/"); // Omdirigera till inloggningssidan
+  };
 
   const handleCreate = async (e) => {
     if (!user || !token) return; // Kontrollera att användaren är inloggad
@@ -120,6 +127,10 @@ export default function ItemsPage() {
 
   return (
     <main className="items-container">
+      <button className="logout-button" onClick={handleLogout}>
+        Logga ut
+      </button>
+
       <form
         onSubmit={isEditing ? handleUpdate : handleCreate}
         className="item-form-container"
