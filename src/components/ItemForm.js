@@ -8,7 +8,7 @@ function ItemForm() {
     async function handleSubmit(e) {
         e.preventDefault()
 
-
+        console.log(token);
         const response = await fetch("/api/items", {
             method: "POST",
             headers: {

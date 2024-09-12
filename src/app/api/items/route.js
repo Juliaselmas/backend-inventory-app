@@ -20,45 +20,54 @@ model Item {
 const prisma = new PrismaClient();
 
 export async function GET(req) {
-    const userId = req.headers.get("userId");
+  const userId = req.headers.get("userId");
+  console.log("userId", userId);
 
-    try {
-        const items = await prisma.item.findMany({
-            where: { userId: Number(userId) }
-        });
+  try {
+    const items = await prisma.item.findMany({
+      where: { userId: Number(userId) },
+    });
 
-        return NextResponse.json(items, { status: 200 });
-    }catch (error) {
-        return NextResponse.json({
-            message: "Error fetching items"
-        },{
-            status: 500
-        });
-    }
+    return NextResponse.json(items, { status: 200 });
+  } catch (error) {
+    console.error("Failed to get items", error);
+
+    return NextResponse.json(
+      {
+        message: "Error fetching items",
+      },
+      {
+        status: 500,
+      }
+    );
+  }
 }
 
 export async function POST(req) {
-    const userId = req.headers.get("userId");
+  const userId = req.headers.get("userId");
 
-    try {
-        const body = await req.json();
-        const newItem = await prisma.item.create({
-            data: {
-                name: body.name,
-                description: body.description,
-                quantity: body.quantity,
-                category: body.category,
-                userId: Number(userId)
-            },
-        });
+  try {
+    const body = await req.json();
+    const newItem = await prisma.item.create({
+      data: {
+        name: body.name,
+        description: body.description,
+        quantity: Number(body.quantity),
+        category: body.category,
+        userId: Number(userId),
+      },
+    });
 
-        return NextResponse.json(newItem, { status: 201 });
-    } catch (error) {
-        console.log(error);
-        return NextResponse.json({
-            message: "Error creating item"
-        },{
-            status: 400
-        })
-    }
+    return NextResponse.json(newItem, { status: 201 });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      {
+        message: "Error creating item",
+      },
+      {
+        status: 400,
+      }
+    );
+  }
 }

@@ -1,3 +1,4 @@
+/* Globala inställningar och grundläggande styling */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 @tailwind base;
@@ -21,41 +22,119 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    to bottom,
+    rgb(var(--background-start-rgb)), /* Startar med den befintliga ljusare nyansen */
+    #b3d0b3, /* Mörkare nyans */
+    rgb(var(--background-end-rgb)) /* Slutar med den befintliga ljusare nyansen */
+  );
 }
 
+.full-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 50vw;
+}
+
+/* Styling för item-card */
 .item-card {
-  max-width: 24rem;
+  width: 100%; /* Bredd på 80% av webbläsarens bredd */
+  max-width: 1200px; /* Sätter ett maxvärde för bredden */
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  background-color: rgb(104, 135, 105);
+  background-color: #dae7da; /* Samma som i .form */
   padding: 1rem;
+  display: flex;
+  flex-direction: row; /* För att få texten att ligga bredvid varandra */
+  justify-content: space-between;
+  margin-bottom: 1rem; /* Avstånd mellan korten */
+}
+
+.item-card__title,
+.item-card__detail,
+.item-card__label {
+  color: #2b3a2a; /* Samma som .form__label */
 }
 
 .item-card__title {
   font-weight: bold;
   font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+  margin-right: 2rem;
 }
 
 .item-card__detail {
-  color: #4a5568;
+  color: #4a5568; /* Kan anpassas för att matcha .form__input */
   font-size: 1rem;
-  margin-bottom: 0.5rem;
+  margin-right: 2rem;
 }
 
+.item-card__label {
+  font-weight: bold;
+  margin-right: 2rem;
+}
+
+/* Styling för items-page.js */
+.items-container {
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #a1a5a0;
+}
+
+.items-header {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #2b3a2a;
+  text-align: center;
+}
+
+.items-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+}
+.item-card__button {
+  padding: 0.2rem 0.5rem; 
+  margin-left: 10px;
+  font-size: 12px; 
+  border: none; 
+  border-radius: 4px;
+  cursor: pointer; 
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+.item-card__button--edit {
+  background-color: #456c4c; /* Matchar .form__button--primary */
+  color: white; /* Textfärg */
+}
+
+.item-card__button--edit:hover {
+  background-color: #5b8c5a; /* En ljusare grön nyans vid hover */
+}
+
+.item-card__button--delete {
+  background-color: #dc3545; /* Matchar .form__button--secondary */
+  color: white; /* Textfärg */
+}
+
+.item-card__button--delete:hover {
+  background-color: #c82333; /* En mörkare röd nyans vid hover */
+}
+
+/* Form styling */
 .form {
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #aa3636;
   border-radius: 5px;
+  background-color: #f8faf8; 
 }
 
 .form__group {
@@ -66,32 +145,34 @@ body {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  color: #2b3a2a;
+  font-size: 12px;
 }
 
 .form__input {
-  width: 100%;
+  min-width: 300px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .form__button {
   width: 100%;
   padding: 10px;
-  font-size: 16px;
+  font-size: 12px;
   border: none;
   cursor: pointer;
   border-radius: 4px;
 }
 
 .form__button--primary {
-  background-color: #007bff;
+  background-color: #456c4c;
   color: white;
 }
 
 .form__button--secondary {
-  background-color: #6c757d;
+  background-color: #728074;
   color: white;
 }
 
@@ -100,3 +181,72 @@ body {
   margin: 10px 0;
 }
 
+/* Styling för item-formuläret */
+.item-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  max-width: 400px;
+}
+
+.item-form__title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 1rem;
+  text-align: center;
+  color: #2b3a2a;
+}
+
+.item-form__group {
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-form__label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  margin-right: 1.5rem;
+  color: #2b3a2a;
+  font-size: 12px;
+}
+
+.item-form__input {
+  min-width: 15rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.item-form__button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 10px;
+}
+
+.item-form__button {
+  width: 48%;
+  padding: 0.75rem;
+  font-size: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.item-form__button--primary {
+  background-color: #28a745;
+  color: white;
+}
+
+.item-form__button--secondary {
+  background-color: #dc3545;
+  color: white;
+}

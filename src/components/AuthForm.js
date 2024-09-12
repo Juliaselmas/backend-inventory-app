@@ -17,13 +17,13 @@ function AuthForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     setError(""); // Nollställ eventuella tidigare fel
-  
+
     const url = isLogin ? "/api/auth/login" : "/api/auth/register";
-  
+
     const body = isLogin
       ? { email, password } // endast email och lösenord för inloggning
       : { email, password, name }; // lägg till namn för registrering
-  
+
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -32,11 +32,11 @@ function AuthForm() {
         },
         body: JSON.stringify(body),
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         console.log("Token received:", data.token);
-  
+
         localStorage.setItem("@library/token", data.token);
         auth.setToken(data.token);
         router.push("/items"); // Omdirigera till items-sidan
@@ -50,12 +50,10 @@ function AuthForm() {
       setError("Something went wrong, please try again.");
     }
   }
-    
 
   return (
     <div>
-      
-      <form className="form bg-white" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <div className="form__group">
           <label className="form__label">Email</label>
           <input
@@ -91,9 +89,7 @@ function AuthForm() {
             ></input>
           </div>
         )}
-        {error && <p className="text-red-500">
-            {error}
-        </p>}
+        {error && <p className="text-red-500">{error}</p>}
         <button className="form__button form__button--primary">
           {isLogin ? "Login" : "Register"}
         </button>
@@ -115,7 +111,6 @@ function AuthForm() {
 }
 
 export default AuthForm;
-
 
 /*
 "use client";
