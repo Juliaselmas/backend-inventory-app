@@ -1,5 +1,3 @@
-//"use client";  // Denna komponent körs på klienten
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/auth";
@@ -16,7 +14,7 @@ function AuthForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setError(""); // Nollställ eventuella tidigare fel
+    setError("");
 
     const url = isLogin ? "/api/auth/login" : "/api/auth/register";
 
@@ -39,14 +37,14 @@ function AuthForm() {
 
         localStorage.setItem("@library/token", data.token);
         auth.setToken(data.token);
-        router.push("/items"); // Omdirigera till items-sidan
+        router.push("/items"); // Omdirigerar till items-sidan
       } else {
-        const errorMessage = await response.json(); // Läs felmeddelandet från servern
-        console.error("Error during login1:", errorMessage); // Uppdatera fel-loggen här
-        setError(errorMessage.error || "Invalid login credentials"); // Sätt felmeddelandet
+        const errorMessage = await response.json();
+        console.error("Error during login1:", errorMessage);
+        setError(errorMessage.error || "Invalid login credentials");
       }
     } catch (err) {
-      console.error("Error during login2:", err); // Korrekt användning av err här
+      console.error("Error during login2:", err);
       setError("Something went wrong, please try again.");
     }
   }

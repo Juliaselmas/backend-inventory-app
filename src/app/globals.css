@@ -1,4 +1,3 @@
-/* Globala inställningar och grundläggande styling */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 @tailwind base;
@@ -11,22 +10,15 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --foreground-rgb: 0, 0, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-    to bottom,
-    rgb(var(--background-start-rgb)), /* Startar med den befintliga ljusare nyansen */
-    #b3d0b3, /* Mörkare nyans */
-    rgb(var(--background-end-rgb)) /* Slutar med den befintliga ljusare nyansen */
-  );
+  background-image: url('https://images.pexels.com/photos/1831234/pexels-photo-1831234.jpeg?auto=compress&cs=tinysrgb&w=800');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  color: #3f3f3f;
 }
 
 .full-screen {
@@ -37,94 +29,108 @@ body {
   min-width: 50vw;
 }
 
-/* Styling för item-card */
+/* Item-card */
 .item-card {
-  width: 100%; /* Bredd på 80% av webbläsarens bredd */
-  max-width: 1200px; /* Sätter ett maxvärde för bredden */
+  width: 100%;
+  max-width: 1200px;
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  background-color: #dae7da; /* Samma som i .form */
+  background-color: #f9f9f9;
   padding: 1rem;
   display: flex;
-  flex-direction: row; /* För att få texten att ligga bredvid varandra */
+  flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 1rem; /* Avstånd mellan korten */
+  margin-bottom: 0.1rem;
 }
 
 .item-card__title,
 .item-card__detail,
 .item-card__label {
-  color: #2b3a2a; /* Samma som .form__label */
-}
-
-.item-card__title {
-  font-weight: bold;
-  font-size: 1.25rem;
-  margin-right: 2rem;
-}
-
-.item-card__detail {
-  color: #4a5568; /* Kan anpassas för att matcha .form__input */
   font-size: 1rem;
   margin-right: 2rem;
 }
 
-.item-card__label {
+.item-card__title {
   font-weight: bold;
-  margin-right: 2rem;
 }
 
-/* Styling för items-page.js */
+.item-card__detail,
+.item-card__label {
+  color: #3f3f3f;
+}
+
+/* Item buttons */
+.item-card__button {
+  padding: 0.2rem 0.5rem;
+  margin-left: 10px;
+  font-size: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.item-card__button--edit {
+  background-color: #456c4c;
+  color: white;
+}
+
+.item-card__button--edit:hover {
+  background-color: #5b8c5a;
+}
+
+.item-card__button--delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.item-card__button--delete:hover {
+  background-color: #c82333;
+}
+
+/* Items-page */
+.items-grid {
+  width: 70%;
+}
+
 .items-container {
   min-height: 100vh;
+  width: 100%;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #a1a5a0;
 }
 
 .items-header {
   font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: #2b3a2a;
+  margin-bottom: 1rem;
   text-align: center;
+  color: #3f3f3f;
 }
 
-.items-grid {
+.header-panel {
+  width: 75%;
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+
+.item-details {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
-  max-width: 1200px;
-}
-.item-card__button {
-  padding: 0.2rem 0.5rem; 
-  margin-left: 10px;
-  font-size: 12px; 
-  border: none; 
-  border-radius: 4px;
-  cursor: pointer; 
-  transition: background-color 0.3s, color 0.3s; 
 }
 
-.item-card__button--edit {
-  background-color: #456c4c; /* Matchar .form__button--primary */
-  color: white; /* Textfärg */
-}
-
-.item-card__button--edit:hover {
-  background-color: #5b8c5a; /* En ljusare grön nyans vid hover */
-}
-
-.item-card__button--delete {
-  background-color: #dc3545; /* Matchar .form__button--secondary */
-  color: white; /* Textfärg */
-}
-
-.item-card__button--delete:hover {
-  background-color: #c82333; /* En mörkare röd nyans vid hover */
+.item-detail {
+  padding: 0 10px;
+  text-align: center;
+  font-weight: bold;
 }
 
 /* Form styling */
@@ -134,7 +140,7 @@ body {
   margin: 0 auto;
   padding: 20px;
   border-radius: 5px;
-  background-color: #f8faf8; 
+  background-color: rgba(248, 250, 248, 0.531);
 }
 
 .form__group {
@@ -145,7 +151,7 @@ body {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  color: #2b3a2a;
+  color: #3f3f3f;
   font-size: 12px;
 }
 
@@ -181,14 +187,14 @@ body {
   margin: 10px 0;
 }
 
-/* Styling för item-formuläret */
+/* Item-form styling */
 .item-form-container {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   margin-bottom: 2rem;
   padding: 1rem;
-  background-color: #f8f9fa;
+  background-color: rgba(248, 250, 248, 0.531);
   border-radius: 8px;
   max-width: 400px;
 }
@@ -198,7 +204,7 @@ body {
   font-size: 1.5rem;
   margin: 1rem;
   text-align: center;
-  color: #2b3a2a;
+  color: #3f3f3f;
 }
 
 .item-form__group {
@@ -209,11 +215,10 @@ body {
 }
 
 .item-form__label {
-  display: block;
   font-weight: bold;
   margin-bottom: 0.5rem;
   margin-right: 1.5rem;
-  color: #2b3a2a;
+  color: #3f3f3f;
   font-size: 12px;
 }
 
@@ -227,14 +232,14 @@ body {
 
 .item-form__button-group {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 1rem;
   margin-top: 10px;
 }
 
 .item-form__button {
-  width: 48%;
-  padding: 0.75rem;
+  width: 30%;
+  padding: 0.5rem;
   font-size: 12px;
   border: none;
   border-radius: 4px;
@@ -242,29 +247,27 @@ body {
 }
 
 .item-form__button--primary {
-  background-color: #28a745;
+  background-color:#456c4c;
   color: white;
 }
 
-.item-form__button--secondary {
-  background-color: #dc3545;
-  color: white;
-}
-
+/* Logout button */
 .logout-button {
-  position: fixed; /* Fixera knappen */
-  top: 1rem; /* Avstånd från toppen */
-  right: 1rem; /* Avstånd från höger */
-  padding: 0.5rem 1rem; /* Inre avstånd */
-  background-color: #dc3545; /* Färg för logga ut-knappen */
-  color: white; /* Vit textfärg */
-  border: none; /* Ingen kantlinje */
-  border-radius: 4px; /* Rundade hörn */
-  cursor: pointer; /* Pekaren ska visa att det är klickbart */
-  font-size: 1rem; /* Textstorlek */
-  transition: background-color 0.3s; /* Övergång för hover */
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: none;
+  color: #393939;
+  border: 1px solid #393939;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
 }
 
 .logout-button:hover {
-  background-color: #c82333; /* Mörkare färg vid hover */
+  background-color: #c82333;
+  color: white;
+  border: none;
 }
