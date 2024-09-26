@@ -16,6 +16,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
+  width: 100vw;
   margin: 0;
   padding: 0;
   color: #3f3f3f;
@@ -31,8 +32,7 @@ body {
 
 /* Item-card */
 .item-card {
-  width: 100%;
-  max-width: 1200px;
+  width: 50vw;
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
@@ -91,13 +91,18 @@ body {
 
 /* Items-page */
 .items-grid {
-  width: 70%;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
 }
 
 .items-container {
   min-height: 100vh;
-  width: 100%;
-  padding: 2rem;
+  width: 90%;
+  padding: 6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -111,7 +116,7 @@ body {
 }
 
 .header-panel {
-  width: 75%;
+  width: 38vw;
   display: flex;
   justify-content: space-between;
   padding: 10px;
@@ -119,6 +124,7 @@ body {
   border-radius: 5px;
   margin-bottom: 5px;
   margin-top: 15px;
+  align-self: flex-start;
 }
 
 .item-details {
